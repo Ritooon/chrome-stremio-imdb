@@ -70,15 +70,24 @@ function insertStremioButtonTrakt() {
             console.log('OIS: Detected imdb');
             const imdbId = imdbLinkElement.getAttribute('href').split('/').pop(); // Extract IMDb ID from the href attribute
 
+
+            // Stremio btn v2 
+            const parentContainer = document.createElement('div');
+            parentContainer.classList.add('streaming-links');
+
+            const childContainer = document.createElement('div');
+            childContainer.classList.add('sources');
+
+            parentContainer.appendChild(childContainer);
+
             // Create the new Stremio button
             const stremioButton = document.createElement('button');
             stremioButton.innerHTML = 'Stremio';
             stremioButton.classList.add('ipc-split-button__btn');
             stremioButton.setAttribute('role', 'button');
-            stremioButton.setAttribute('style', 'width: 100%;border: none;background: #725ad6;border-radius: 0;padding: 15px 0;box-shadow: none;text-transform: uppercase;');
+            stremioButton.setAttribute('style', 'border: none;background: rgb(114, 90, 214);padding: 11px 0px;box-shadow: none;text-transform: uppercase;border-radius: 3px;margin-bottom: 7px;width: 71.67px;font-size: 13px;box-shadow: none;');
             stremioButton.setAttribute('tabindex', '0');
             stremioButton.setAttribute('aria-disabled', 'false');
-            stremioButton.style.marginRight = '10px';  // Adjust margin as needed
 
             // Add click event listener to open Stremio link
             stremioButton.addEventListener('click', function() {
@@ -98,11 +107,13 @@ function insertStremioButtonTrakt() {
                 document.body.removeChild(tempLink);
             });
 
+            childContainer.appendChild(stremioButton)
+
             // Find the action-buttons element on the page
             const actionButtons = document.querySelector('.sidebar .poster');
             if (actionButtons) {
                 // Insert the Stremio button before the first child of action-buttons
-                actionButtons.after(stremioButton);
+                actionButtons.after(parentContainer);
                 stremioButtonAdded = true;
             }
         }
