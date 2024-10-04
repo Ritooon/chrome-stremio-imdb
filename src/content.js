@@ -52,6 +52,7 @@ function insertStremioButtonIMDB() {
 }
 
 function insertStremioButtonTrakt() {
+    stremioButtonAdded = document.getElementsByClassName('ipc-split-button__btn').length > 0;
     if (stremioButtonAdded) return;
     console.log('OIS: Run Trakt function');
 
@@ -561,5 +562,18 @@ document.addEventListener('DOMContentLoaded', runStremioButtons);
 // Try running the functions after the entire page has loaded
 window.addEventListener('load', runStremioButtons);
 
-// Set a fallback to run the functions after 3 seconds
-setTimeout(runStremioButtons, 1500);
+// Set a fallback to run the functions after 1,5 seconds (And loop if Trakt)
+if (window.location.hostname === 'trakt.tv') {
+    function doSomthing(){
+        runStremioButtons();
+        Start();
+    }
+        
+    function Start(){
+        setTimeout(doSomthing, 3000);
+    }
+        
+    Start();
+} else {
+    setTimeout(runStremioButtons, 1500);
+}

@@ -15,7 +15,7 @@
   },
   "content_scripts": [
     {
-      "run_at": "document_end",
+      "run_at": "document_idle",
       "js": ["content.js", "bestsimilar.js"],
       "matches": [
         "https://www.imdb.com/title/*",
@@ -38,7 +38,8 @@
   "permissions": [
     "tabs",
     "scripting",
-    "contextMenus"
+    "contextMenus",
+    "webNavigation"
   ],
   "host_permissions": [
     "https://www.imdb.com/*",
