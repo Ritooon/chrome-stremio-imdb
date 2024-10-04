@@ -15,7 +15,7 @@
   },
   "content_scripts": [
     {
-      "run_at": "document_idle",
+      "run_at": "document_end",
       "js": ["content.js", "bestsimilar.js"],
       "matches": [
         "https://www.imdb.com/title/*",
