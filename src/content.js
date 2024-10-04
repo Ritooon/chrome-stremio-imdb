@@ -562,7 +562,7 @@ document.addEventListener('DOMContentLoaded', runStremioButtons);
 // Try running the functions after the entire page has loaded
 window.addEventListener('load', runStremioButtons);
 
-// Set a fallback to run the functions after 1,5 seconds (And loop if Trakt)
+// Set a fallback to run the functions after 1,5 seconds (And loop 500ms if Trakt)
 if (window.location.hostname === 'trakt.tv') {
     function doSomthing(){
         runStremioButtons();
@@ -570,7 +570,7 @@ if (window.location.hostname === 'trakt.tv') {
     }
         
     function Start(){
-        setTimeout(doSomthing, 3000);
+        setTimeout(doSomthing, 500);
     }
         
     Start();
